@@ -1,5 +1,6 @@
 // Retrieve the remaining time from localStorage or set to 180 seconds
 let timeRemaining = parseInt(localStorage.getItem('remainingTime'), 10) || 180;
+const nickname = localStorage.getItem("nickname");
 
 // Get DOM elements
 const timerElement = document.getElementById('time-remaining');
@@ -8,7 +9,7 @@ const playersContainer = document.getElementById('players');
 const funTipElement = document.getElementById('fun-tip');
 
 // List of players
-const players = ['Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6', 'Player7'];
+const players = [nickname, 'Player2', 'Player3', 'Player4', 'Player5', 'Player6', 'Player7'];
 let currentPlayerIndex = 0;
 
 // Array of fun tips or facts

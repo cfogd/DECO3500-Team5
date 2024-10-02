@@ -1,6 +1,7 @@
 // Assuming the results are coming from the game server or local data
+const nickname = localStorage.getItem("nickname");
 const gameResults = {
-    mostDeceptive: { player: "Player1", deceivedCount: 5 },
+    mostDeceptive: { player: nickname, deceivedCount: 5 },
     bestDetective: { player: "Player5", sortedCount: 9 },
     superPredictable: { player: "Player5" },
     worstDetective: { player: "Player2", sortedCount: 2 }

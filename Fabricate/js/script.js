@@ -1,20 +1,60 @@
-document.getElementById('create-game-btn').addEventListener('click', function() {
-    // Clear remainingTime from localStorage
-    localStorage.removeItem('remainingTime');
+let nickname = "";
+
+// Function to show temporary notification
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.classList.add('notification');
+    notification.textContent = message;
+
+    document.body.appendChild(notification);
+
+    // Fade out and remove notification after 2 seconds
+    setTimeout(() => {
+        notification.classList.add('fade-out');
+        setTimeout(() => notification.remove(), 500); // Wait for fade-out before removing
+    }, 2000);
+}
+
+function create_game() {
+    // clear local storage
+    localStorage.clear();
+
+    // Get nickname
+    let nicknameInput = document.getElementById("join-nickname");
+    nickname = nicknameInput.value;
+    localStorage.setItem("nickname", nickname);
     
     // Redirect to the lobby.html page
-    window.location.href = 'lobby.html';
-});
-
-document.getElementById('join-game-btn').addEventListener('click', function() {
-    const gameCode = document.getElementById('game-code').value;
-    if (gameCode) {
-        // Placeholder for joining game logic
-        alert('Joining game with code: ' + gameCode);
+    if (nickname) {
+        window.location.href = 'lobby.html';
     } else {
-        alert('Please enter a game code.');
+        alert('Please enter a nickname.')
     }
-});
+}
+
+function join_game() {
+    // clear local storage
+    localStorage.clear();
+
+    // Get nickname
+    let nicknameInput = document.getElementById("join-nickname");
+    nickname = nicknameInput.value;
+    localStorage.setItem("nickname", nickname);
+
+    const gameCode = document.getElementById('game-code').value;
+
+    if (nickname) {
+        if (gameCode) {
+            showNotification(`Joining game with code ${gameCode}...`);
+            // Placeholder for joining game logic
+            setTimeout(() => window.location.href = 'lobby.html', 2000);
+        } else {
+            alert('Please enter a game code.');
+        }
+    } else {
+        alert('Please enter a nickname.')
+    }
+}
 
 // Modal functionality
 const modal = document.getElementById('how-to-play-modal');

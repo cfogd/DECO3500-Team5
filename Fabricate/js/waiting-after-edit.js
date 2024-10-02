@@ -4,8 +4,9 @@ const timerElement = document.getElementById('time-remaining');
 const progressElement = document.getElementById('progress');
 const playersContainer = document.getElementById('players');
 const funTipElement = document.getElementById('fun-tip');
+const nickname = localStorage.getItem("nickname");
 
-const players = ['Player1', 'Player2', 'Player3', 'Player4', 'Player5', 'Player6', 'Player7'];
+const players = [nickname, 'Player2', 'Player3', 'Player4', 'Player5', 'Player6', 'Player7'];
 let currentPlayerIndex = 0;
 
 // Fun tips array

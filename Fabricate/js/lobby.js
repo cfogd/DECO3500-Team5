@@ -1,6 +1,8 @@
+const myNickname = localStorage.getItem("nickname");
+
 // Simulate the list of players, could be replaced with a dynamic list based on actual game data
 let players = [
-    { name: 'Player1 (You)', emoji: '😊', crown: true },
+    { name: myNickname, emoji: '😊', crown: true },
     { name: 'Player2', emoji: '😎', crown: false },
     { name: 'Player3', emoji: '😐', crown: false },
     { name: 'Player4', emoji: '😌', crown: false },
