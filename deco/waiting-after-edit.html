@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting for Others...</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Waiting for Others...</h1>
+
+        <!-- Fun Tips Section -->
+        <div class="tips-container">
+            <p id="fun-tip">Loading fun tips...</p>
+        </div>
+
+        <!-- Optional: Loading Spinner -->
+        <div class="loading-spinner"></div>
+
+        <div id="timer-bar">
+            <span>Time Remaining: <span id="time-remaining">180</span> seconds</span>
+            <div class="progress-bar">
+                <div id="progress" class="progress"></div>
+            </div>
+        </div>
+
+        <div id="players" class="players-list">
+            <!-- Players will be dynamically added here -->
+        </div>
+
+        <p>Preparing the next phase...</p>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <script src="/js/waiting-after-edit.js"></script>
+</body>
+</html>

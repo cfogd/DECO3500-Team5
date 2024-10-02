@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flag Articles</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Flag Articles</h1>
+
+        <div id="timer-bar">
+            <span>Time Remaining: <span id="time-remaining"></span> seconds</span>
+            <div class="progress-bar">
+                <div id="progress" class="progress"></div>
+            </div>
+        </div>
+
+        <div class="article-container">
+            <div id="article">
+                <h2 id="article-title"></h2>
+                <img src="/img/placeholder.png" id="article-image" alt="Article Image">
+                <p id="article-blurb"></p>
+            </div>
+
+            <div class="article-controls">
+                <button id="flag-fake" class="btn red">Flag as Fake</button>
+                <button id="flag-real" class="btn green">Flag as Real</button>
+            </div>
+        </div>
+
+        <button id="done-btn" class="btn gray" disabled>Done</button>
+    </div>
+
+    <script src="/js/flag-articles.js"></script>
+</body>
+</html>

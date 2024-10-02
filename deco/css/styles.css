@@ -1,0 +1,647 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@600&display=swap');
+
+:root {
+    --primary-color: #6C63FF; /* Vibrant purple */
+    --secondary-color: #FF6584; /* Pink */
+    --background-color: #F0F4FF; /* Light background */
+    --text-color: #333333; /* Dark text */
+    --border-color: #E0E0E0; /* Light border */
+    --input-bg-color: #FFFFFF; /* White inputs */
+    --input-border-color: #CCCCCC; /* Grey borders for inputs */
+    --heading-color: #2C3E50; /* Dark blue for headings */
+    --button-text-color: #FFFFFF; /* White button text */
+    --modal-bg-color: rgba(44, 62, 80, 0.9); /* Dark semi-transparent modal background */
+    --card-bg-color: #FFFFFF; /* White card backgrounds */
+    --success-color: #28A745; /* Green for success */
+    --error-color: #DC3545; /* Red for errors */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--background-color) 0%, #D1D4FF 100%);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--border-color);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--heading-color);
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--button-text-color);
+    border: none;
+    padding: 12px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: transform 0.2s, opacity 0.2s;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#article-image {
+    width: 100%; /* Makes the image take up the full width of its container */
+    max-width: 400px; /* Limits the maximum width of the image */
+    height: auto; /* Maintains the aspect ratio */
+    display: block; /* Removes the inline spacing below images */
+    margin: 20px auto; /* Centers the image and adds vertical spacing */
+    border-radius: 8px; /* Adds slightly rounded corners */
+    object-fit: cover; /* Ensures the image covers the container without distortion */
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn.red {
+    background: linear-gradient(45deg, #FF6584, #FF4757);
+}
+
+.btn.green {
+    background: linear-gradient(45deg, #28A745, #3CB371);
+}
+
+.btn.gray {
+    background: linear-gradient(45deg, #A9A9A9, #D3D3D3);
+    cursor: not-allowed;
+}
+
+.join-game {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#game-code {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg-color);
+}
+
+p {
+    margin-bottom: 20px;
+    color: #555555;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+a:active, a:focus {
+    color: var(--secondary-color);
+}
+
+/* Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1002; /* Higher than other modals if any */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.5s;
+}
+
+.modal-content {
+    background-color: var(--card-bg-color);
+    padding: 30px 40px;
+    border-radius: 12px;
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    animation: slideDown 0.5s ease-out;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Close Button Styling */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    color: var(--text-color);
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--secondary-color);
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    color: var(--heading-color);
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg-color);
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-field:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+    outline: none;
+}
+
+/* Submit Button Styling */
+#submit-edit-btn {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: var(--button-text-color);
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: transform 0.2s, opacity 0.2s;
+    width: 100%;
+}
+
+#submit-edit-btn:hover {
+    transform: scale(1.02);
+    opacity: 0.95;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Responsive Enhancements */
+@media only screen and (max-width: 600px) {
+    .modal-content {
+        padding: 20px 25px;
+    }
+
+    .close {
+        font-size: 24px;
+        top: 10px;
+        right: 15px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .input-field {
+        font-size: 14px;
+        padding: 8px 10px;
+    }
+
+    #submit-edit-btn {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+}
+
+.steps .step {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.steps .step h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.steps .step p {
+    font-size: 14px;
+    color: #666666;
+}
+
+#back-to-home {
+    background: linear-gradient(45deg, var(--secondary-color), var(--primary-color));
+    margin-top: 20px;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: var(--button-text-color);
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    opacity: 1;
+    z-index: 1001;
+    transition: opacity 0.5s ease;
+}
+
+.notification.fade-out {
+    opacity: 0;
+}
+
+.players-list {
+    margin-bottom: 20px;
+}
+
+#player-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#player-list li {
+    background-color: #FFFFFF;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    font-size: 16px;
+}
+
+.crown {
+    font-size: 20px;
+}
+
+.game-rules {
+    margin-bottom: 20px;
+}
+
+.game-rules label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 14px;
+    color: var(--heading-color);
+}
+
+.game-rules input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid var(--input-border-color);
+    border-radius: 8px;
+    background-color: var(--input-bg-color);
+}
+
+.buttons .btn {
+    margin: 10px 0;
+}
+
+#timer-bar {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    height: 10px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+
+.progress {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    height: 100%;
+    width: 100%;
+    transition: width 1s linear;
+}
+
+.articles {
+    margin-bottom: 20px;
+}
+
+.article-option {
+    background-color: var(--input-bg-color);
+    border: 1px solid var(--input-border-color);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.article-option:hover {
+    background-color: #F7F7F7;
+    transform: translateY(-2px);
+}
+
+.article-option.active {
+    border: 2px solid var(--primary-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.article-option h2 {
+    margin-bottom: 12px;
+    font-size: 20px;
+    color: var(--heading-color);
+}
+
+.article-option p {
+    font-size: 14px;
+    color: #555555;
+    margin-bottom: 12px;
+}
+
+.article-option img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.gray {
+    background: linear-gradient(45deg, #A9A9A9, #D3D3D3);
+    color: white;
+    cursor: not-allowed;
+}
+
+.gray.active {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    cursor: pointer;
+}
+
+.result-card {
+    background-color: #FFFFFF;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeInUp 0.5s ease-in-out;
+}
+
+.result-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: var(--heading-color);
+}
+
+.result-card p {
+    font-size: 16px;
+    color: #555555;
+}
+
+.player-name {
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.guess-list {
+    margin-top: 20px;
+}
+
+.guess-card {
+    padding: 12px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    color: white;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.guess-card.green {
+    background-color: var(--success-color);
+}
+
+.guess-card.red {
+    background-color: var(--error-color);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media only screen and (max-width: 600px) {
+    .container {
+        padding: 20px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+
+    .result-card {
+        padding: 15px;
+    }
+
+    .player {
+        font-size: 20px;
+    }
+}
+
+
+.loading-spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+/* Keyframes for spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Tips Container */
+.tips-container {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #FFF9C4; /* Light yellow background */
+    border: 1px solid #FFECB3;
+    border-radius: 8px;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.tips-container p {
+    font-size: 14px;
+    color: #666666;
+    font-style: italic;
+}
+
+/* Confetti Canvas */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1001;
+}
+
+/* Player Animations */
+.player {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fun Tip Animation */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Enhanced Progress Bar */
+.progress-bar {
+    width: 100%;
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    height: 12px;
+    margin-top: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    height: 100%;
+    width: 100%;
+    transition: width 1s linear;
+}
+
+/* Additional Styles for Confetti (optional) */
+body.confetti-active {
+    overflow: hidden;
+}
+
+/* Responsive Enhancements */
+@media only screen and (max-width: 600px) {
+    .container {
+        padding: 20px;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .loading-spinner {
+        width: 30px;
+        height: 30px;
+        border-width: 4px;
+    }
+
+    .tips-container p {
+        font-size: 12px;
+    }
+
+    #player-list li {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
