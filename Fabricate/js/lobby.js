@@ -4,12 +4,12 @@ const colors = ['red', 'blue', 'green', 'brown', 'purple', 'orange'];
 
 // Simulate the list of players, could be replaced with a dynamic list based on actual game data
 let players = [
-    { name: myNickname, crown: true },
-    { name: 'Player2', crown: false },
-    { name: 'Player3', crown: false },
-    { name: 'Player4', crown: false },
-    { name: 'Player5', crown: false },
-    { name: 'Player6', crown: false }
+    { name: myNickname, crown: true, color: colors[0] },
+    { name: 'Player2', crown: false, color: colors[1] },
+    { name: 'Player3', crown: false, color: colors[2] },
+    { name: 'Player4', crown: false, color: colors[3] },
+    { name: 'Player5', crown: false, color: colors[4] },
+    { name: 'Player6', crown: false, color: colors[5] }
 ];
 
 // Function to render players dynamically
@@ -21,7 +21,7 @@ function renderPlayers() {
 
     players.forEach(player => {
         let li = document.createElement('li');
-        li.style.backgroundColor = colors[count];
+        li.style.backgroundColor = players[count].color;
         li.textContent = `${player.name}`;
         if (player.crown) {
             const crown = document.createElement('span');

@@ -35,7 +35,7 @@ function create_game() {
     if (nickname) {
         window.location.href = 'lobby.html';
     } else {
-        alert('Please enter a nickname.')
+        alert('Please enter a Nickname!')
     }
 }
 
@@ -59,10 +59,10 @@ function join_game() {
             // Placeholder for joining game logic
             setTimeout(() => window.location.href = 'lobby.html', 2000);
         } else {
-            alert('Please enter a game code.');
+            alert('Please enter a Game Code!');
         }
     } else {
-        alert('Please enter a nickname.')
+        alert('Please enter a Nickname!')
     }
 }
 
