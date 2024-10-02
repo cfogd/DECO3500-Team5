@@ -1,5 +1,15 @@
 Welcome to DECO3500 Team 5's GitHub!
 
+# Fabricate
+Our design concept is Fabricate, a 
+
+## How to play
+
+
+## How to download
+1. Clone repository to local device
+2. Run 
+
 # Wiki
 Design Overview
 
