@@ -5,15 +5,23 @@ Our design concept is Fabricate, a social and mobile fake news game.
 
 ## How to play
 1. Edit a News Article
+
+
 Choose from two real articles. Get creative and edit one into a fake news story to trick your friends.
 
-2. Flag the Fake News
+3. Flag the Fake News
+
+
 Review the edited and unedited articles and flag the ones you think are fake. Can you spot the deception?
 
-3. Discussion
+4. Discussion
+
+
 Discuss the flagged articles with your friends and come to a decision about whether they are fake or not. Be careful, could someone be lying?
 
-4. Win the Game!
+5. Win the Game!
+
+
 Fool the most friends or spot the most fake articles to win!
 
 ## How to download
