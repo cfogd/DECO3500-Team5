@@ -14,17 +14,17 @@ const dummyArticles = [
     { 
         title: 'Scientists Sequence DNA From 3,600-Year-Old Cheese', 
         blurb: 'A decade after its discovery in the Taklamakan Desert, paleogeneticists in China have extracted and sequenced DNA from cheese found in a Bronze Age grave. "This is why you should never sequence DNA when you’re hungry." stated Associate James Weiss.', 
-        image: '/assets/CHEESE.jpg' // Ensure this path is correct
+        image: '/Fabricate/assets/CHEESE.jpg' // Ensure this path is correct
     },
     { 
         title: 'Michael Schumacher ‘seen’ in public for first time in 11 years', 
         blurb: 'Michael Schumacher has reportedly been seen in public for the first time in 11 years. The Formula 1 icon was reportedly present when daughter Gina married partner Iain Bethke over the weekend in Majorca.', 
-        image: '/assets/SHOE.jpeg' // Ensure this path is correct
+        image: '/Fabricate/assets/SHOE.jpeg' // Ensure this path is correct
     },
     { 
         title: 'Vatican City Police Unveil New Unit Of Sin-Sniffing Dogs', 
         blurb: 'VATICAN CITY—In an effort to curb a rising number of immoral offenses, the Corps of Gendarmerie of Vatican City announced Friday the deployment of a new unit of highly trained sin-sniffing dogs. “This unit of elite K-9 officers has been taught to alert their handlers to sinful behavior by loudly barking and immediately engaging the impious subject in pursuit,” said a top official for the papal state’s police force', 
-        image: '/assets/DOG.jpeg' // Ensure this path is correct
+        image: '/Fabricate/assets/DOG.jpeg' // Ensure this path is correct
     }
 ];
 
