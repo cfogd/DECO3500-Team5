@@ -1,23 +1,28 @@
 const myNickname = localStorage.getItem("nickname");
+const gameCode = localStorage.getItem("gameCode");
+const colors = ['red', 'blue', 'green', 'brown', 'purple', 'orange'];
 
 // Simulate the list of players, could be replaced with a dynamic list based on actual game data
 let players = [
-    { name: myNickname, emoji: '😊', crown: true },
-    { name: 'Player2', emoji: '😎', crown: false },
-    { name: 'Player3', emoji: '😐', crown: false },
-    { name: 'Player4', emoji: '😌', crown: false },
-    { name: 'Player5', emoji: '😆', crown: false },
-    { name: 'Player6', emoji: '🤔', crown: false }
+    { name: myNickname, crown: true },
+    { name: 'Player2', crown: false },
+    { name: 'Player3', crown: false },
+    { name: 'Player4', crown: false },
+    { name: 'Player5', crown: false },
+    { name: 'Player6', crown: false }
 ];
 
 // Function to render players dynamically
 function renderPlayers() {
+    document.getElementById('lobby-code').innerHTML = gameCode;
     const playerList = document.getElementById('player-list');
     playerList.innerHTML = ''; // Clear the list before adding players
+    let count = 0;
 
     players.forEach(player => {
-        const li = document.createElement('li');
-        li.textContent = `${player.emoji} ${player.name}`;
+        let li = document.createElement('li');
+        li.style.backgroundColor = colors[count];
+        li.textContent = `${player.name}`;
         if (player.crown) {
             const crown = document.createElement('span');
             crown.textContent = '👑';
@@ -25,11 +30,14 @@ function renderPlayers() {
             li.appendChild(crown);
         }
         playerList.appendChild(li);
+        count++;
     });
 }
 
 // Call renderPlayers when the page loads
 window.onload = renderPlayers;
+
+
 
 // Function to show temporary notification
 function showNotification(message) {

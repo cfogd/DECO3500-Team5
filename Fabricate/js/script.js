@@ -1,4 +1,5 @@
 let nickname = "";
+let gameCode = "";
 
 // Function to show temporary notification
 function showNotification(message) {
@@ -15,14 +16,20 @@ function showNotification(message) {
     }, 2000);
 }
 
+function getRandomRoomId() {
+    return Math.random().toString(36).substr(2, 8);
+}
+
 function create_game() {
     // clear local storage
     localStorage.clear();
 
-    // Get nickname
     let nicknameInput = document.getElementById("join-nickname");
     nickname = nicknameInput.value;
     localStorage.setItem("nickname", nickname);
+    gameCode = getRandomRoomId();
+    localStorage.setItem("isHost", true);
+    localStorage.setItem("gameCode", gameCode);
     
     // Redirect to the lobby.html page
     if (nickname) {
@@ -41,7 +48,10 @@ function join_game() {
     nickname = nicknameInput.value;
     localStorage.setItem("nickname", nickname);
 
-    const gameCode = document.getElementById('game-code').value;
+    gameCode = document.getElementById('game-code').value;
+    localStorage.setItem("isHost", false);
+    localStorage.setItem("nickname", nickname);
+    localStorage.setItem("gameCode", gameCode);
 
     if (nickname) {
         if (gameCode) {
