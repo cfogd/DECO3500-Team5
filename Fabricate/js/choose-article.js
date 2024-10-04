@@ -146,8 +146,9 @@ editArticleForm.addEventListener('submit', function(event) {
         startTimer();
     }
 
-    // Redirect to the first waiting page (waiting-after-edit.html)
-    window.location.href = 'waiting-after-edit.html';
+    // Redirect to the first waiting page (waiting.html)
+    localStorage.setItem("nextPage", "flag");
+    window.location.href = 'waiting.html';
 });
 
 // Handle closing the modal when clicking the close button

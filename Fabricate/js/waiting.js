@@ -1,18 +1,16 @@
-// Retrieve the remaining time from localStorage or set to 180 seconds
+// Retrieve and parse remainingTime from localStorage, default to 180
 let timeRemaining = parseInt(localStorage.getItem('remainingTime'), 10) || 180;
-const nickname = localStorage.getItem("nickname");
-
-// Get DOM elements
 const timerElement = document.getElementById('time-remaining');
 const progressElement = document.getElementById('progress');
 const playersContainer = document.getElementById('players');
 const funTipElement = document.getElementById('fun-tip');
+const nickname = localStorage.getItem("nickname");
+const nextPage = localStorage.getItem("nextPage");
 
-// List of players
 const players = [nickname, 'Player2', 'Player3', 'Player4', 'Player5', 'Player6', 'Player7'];
 let currentPlayerIndex = 0;
 
-// Array of fun tips or facts
+// Fun tips array
 const funTips = [
     "Did you know? Fake news spreads six times faster than the truth on social media.",
     "Tip: Always check the source of the news before sharing it.",
@@ -26,17 +24,10 @@ const funTips = [
 // Flag to prevent multiple redirects
 let hasRedirected = false;
 
-// Function to display random fun tips with animation
+// Function to display random fun tips
 function displayRandomTip() {
     const randomIndex = Math.floor(Math.random() * funTips.length);
-    funTipElement.classList.remove('fade-in');
-    funTipElement.classList.add('fade-out');
-
-    setTimeout(() => {
-        funTipElement.textContent = funTips[randomIndex];
-        funTipElement.classList.remove('fade-out');
-        funTipElement.classList.add('fade-in');
-    }, 500); // Match with CSS transition duration
+    funTipElement.textContent = funTips[randomIndex];
 }
 
 // Display a fun tip every 5 seconds
@@ -49,21 +40,15 @@ displayRandomTip();
 function addPlayerAtRandomInterval() {
     if (currentPlayerIndex < players.length && !hasRedirected) {
         const playerElement = document.createElement('div');
+        playerElement.textContent = players[currentPlayerIndex];
         playerElement.classList.add('player');
         playerElement.style.color = getRandomColor();
 
-        // Add avatar emojis
-        const avatars = ['👩‍💻', '👨‍🔧', '🧑‍🎨', '👨‍🏫', '👩‍⚖️', '🧑‍🚀', '👩‍🚒'];
+        // Optional: Add avatar emojis
         const avatar = document.createElement('span');
-        avatar.textContent = avatars[currentPlayerIndex] + ' ';
-        playerElement.appendChild(avatar);
+        avatar.textContent = '👤 ';
+        playerElement.prepend(avatar);
 
-        // Add player name
-        const playerName = document.createElement('span');
-        playerName.textContent = players[currentPlayerIndex];
-        playerElement.appendChild(playerName);
-
-        // Append to players container
         playersContainer.appendChild(playerElement);
 
         currentPlayerIndex++;
@@ -79,7 +64,11 @@ function addPlayerAtRandomInterval() {
                     localStorage.setItem('remainingTime', timeRemaining);  // Save the remaining time before redirect
                     triggerConfetti();
                     setTimeout(() => {
-                        window.location.href = 'results.html'; // Proceed to the next game phase
+                        if (nextPage == "flag") {
+                            window.location.href = 'flag-articles.html';
+                        } else {
+                            window.location.href = 'results.html';
+                        }
                     }, 3000); // Delay to allow confetti animation
                 }
             }, 1000); // Delay for dramatic effect before moving to the next page
@@ -89,7 +78,7 @@ function addPlayerAtRandomInterval() {
     }
 }
 
-// Function to generate random colors for players
+// Generate random colors for players
 function getRandomColor() {
     const colors = ['#FF1493', '#1E90FF', '#32CD32', '#FFD700', '#FFA500', '#8A2BE2', '#FF4500'];
     return colors[Math.floor(Math.random() * colors.length)];
@@ -110,7 +99,11 @@ const countdown = setInterval(() => {
         if (!hasRedirected) {
             hasRedirected = true;
             alert('Time is up!');
-            window.location.href = 'results.html';  // Automatically move to the next page if time is up
+            if (nextPage == "flag") {
+                window.location.href = 'flag-articles.html';
+            } else {
+                window.location.href = 'results.html';
+            }
         }
     }
 }, 1000);
@@ -188,10 +181,3 @@ function triggerConfetti() {
         ctx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
     }, 3000);
 }
-
-// Adjust canvas size on window resize
-window.addEventListener('resize', () => {
-    const confettiCanvas = document.getElementById('confetti-canvas');
-    confettiCanvas.width = window.innerWidth;
-    confettiCanvas.height = window.innerHeight;
-});

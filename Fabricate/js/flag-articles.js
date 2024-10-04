@@ -101,6 +101,7 @@ doneBtn.addEventListener('click', function() {
 
 // Function to redirect back to the waiting screen
 function redirectToWaitingScreen() {
+    localStorage.setItem("nextPage", "results");
     window.location.href = 'waiting.html';
 }
 
