@@ -10,10 +10,11 @@
     <div class="container">
         <h1>Flag Articles</h1>
 
+        <!-- Timer Progress Bar -->
         <div id="timer-bar">
             <span>Time Remaining: <span id="time-remaining"></span> seconds</span>
             <div class="progress-bar">
-                <div id="progress" class="progress"></div>
+                <div id="time-progress" class="progress"></div>
             </div>
         </div>
 
@@ -25,8 +26,21 @@
             </div>
 
             <div class="article-controls">
-                <button id="flag-fake" class="btn red">Flag as Fake</button>
-                <button id="flag-real" class="btn green">Flag as Real</button>
+                <button id="flag-fake" class="btn red gray" disabled>Flag as Fake</button>
+                <button id="flag-real" class="btn green gray" disabled>Flag as Real</button>
+            </div>
+
+            <!-- User Vote Display -->
+            <div id="user-vote" class="user-vote">
+                <!-- This will be dynamically updated -->
+            </div>
+        </div>
+
+        <!-- Votes Progress Bar -->
+        <div id="votes-bar">
+            <span>Votes Received: <span id="votes-count">0</span>/7</span>
+            <div class="progress-bar">
+                <div id="votes-progress" class="progress"></div>
             </div>
         </div>
 

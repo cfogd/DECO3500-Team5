@@ -645,3 +645,63 @@ body.confetti-active {
         font-size: 14px;
     }
 }
+/* Existing CSS */
+
+/* User Vote Display */
+.user-vote {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    display: none; /* Hidden by default */
+}
+
+.user-vote.fake {
+    color: var(--error-color); /* Red for Fake */
+}
+
+.user-vote.real {
+    color: var(--success-color); /* Green for Real */
+}
+
+.user-vote::before {
+    content: '';
+    display: inline-block;
+    margin-right: 8px;
+    width: 16px;
+    height: 16px;
+    background-size: contain;
+    vertical-align: middle;
+}
+
+.user-vote.fake::before {
+    background-image: url('/Fabricate/assets/icons/fake-icon.png'); /* Replace with actual icon path */
+}
+
+.user-vote.real::before {
+    background-image: url('/Fabricate/assets/icons/real-icon.png'); /* Replace with actual icon path */
+}
+
+/* Optional: Disabled Button Styles Adjustment */
+.btn.gray.active {
+    opacity: 1;
+    cursor: pointer;
+}
+
+/* Ensure Progress Bars are styled correctly */
+.progress-bar {
+    width: 100%;
+    background-color: #E0E0E0;
+    border-radius: 10px;
+    height: 10px;
+    margin-top: 8px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress {
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    height: 100%;
+    width: 0%;
+    transition: width 0.5s ease;
+}
