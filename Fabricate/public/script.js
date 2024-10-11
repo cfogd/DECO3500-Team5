@@ -16,19 +16,23 @@ const myGameRoomCode = localStorage.getItem("roomCode");
 const amIHost = localStorage.getItem("isHost");
 const startGameBtn = document.getElementById("start-game-btn");
 
+if (amIHost == "true") {
+  document.getElementById('lobby-code').innerHTML = myGameRoomCode;
+}
+
 // connect to Ably
 const realtime = new Ably.Realtime({
     authUrl: "/auth",
-  });
+});
 
-players = [
-    { name: myNickname, isHost: true, color: '' },
-    { name: 'Player2', isHost: false, color: '' },
-    { name: 'Player3', isHost: false, color: '' },
-    { name: 'Player4', isHost: false, color: '' },
-    { name: 'Player5', isHost: false, color: '' },
-    { name: 'Player6', isHost: false, color: '' }
-];
+// players = [
+//     { name: myNickname, isHost: true, color: '' },
+//     { name: 'Player2', isHost: false, color: '' },
+//     { name: 'Player3', isHost: false, color: '' },
+//     { name: 'Player4', isHost: false, color: '' },
+//     { name: 'Player5', isHost: false, color: '' },
+//     { name: 'Player6', isHost: false, color: '' }
+// ];
 
 function setColors() {
     for(i = 0; i < playerCount; i++) {
@@ -41,9 +45,8 @@ function setColors() {
 }
 
 // Function to render players dynamically
-function renderPlayers() {
+function renderPlayer() {
     setColors();
-    document.getElementById('lobby-code').innerHTML = roomCode;
     const playerList = document.getElementById('player-list');
     playerList.innerHTML = ''; // Clear the list before adding players
     let count = 0;
@@ -62,9 +65,6 @@ function renderPlayers() {
         count++;
     });
 }
-
-// Call renderPlayers when the page loads
-window.onload = renderPlayers;
 
 // Function to show temporary notification
 function showNotification(message) {
@@ -106,6 +106,8 @@ realtime.connection.once("connected", () => {
     myChannelName = myGameRoomCode + ":clientChannel-" + myClientId;
     myGameRoomCh = realtime.channels.get(myGameRoomName);
     myChannel = realtime.channels.get(myChannelName);
+
+    renderPlayers;
   
     if (amIHost == "true") {
       const globalGameName = "main-game-thread";
