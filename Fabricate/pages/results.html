@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="/Fabricate/public/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Results</h1>
+
+        <div class="result-card">
+            <h2>Most Deceptive: <span class="player-name" id="most-deceptive">Player1</span></h2>
+            <p>Tricked <span id="deceptive-count">5</span> players into believing their article!</p>
+        </div>
+        
+        <div class="result-card">
+            <h2>Best Detective: <span class="player-name" id="best-detective">Player5</span></h2>
+            <p>Sorted <span id="detective-count">9</span> articles correctly!</p>
+        </div>
+
+        <div class="result-card">
+            <h2>Super Predictable: <span class="player-name" id="super-predictable">Player5</span></h2>
+        </div>
+
+        <div class="result-card">
+            <h2>Worst Detective: <span class="player-name" id="worst-detective">Player2</span></h2>
+            <p>Sorted <span id="worst-detective-count">2</span> articles correctly!</p>
+        </div>
+
+
+        <div class="buttons">
+            <button class="btn blue" id="view-details-btn">View Your Details</button>
+            <button class="btn blue" id="play-again-btn">Play Again</button>
+            <button class="btn red" id="return-menu-btn">Return to Menu</button>
+        </div>
+    </div>
+
+    <!-- Modal for showing user's guesses -->
+    <div id="details-modal" class="modal">
+        <div class="modal-content">
+            <h2>Your Awards</h2>
+            <div class="result-card">
+                <h2>Most Deceptive: <span class="player-name">Player1</span></h2>
+                <p>Tricked 5 players into believing their article!</p>
+            </div>
+    
+            <h3>Your Guesses</h3>
+            <div id="guesses-list" class="guess-list">
+                <!-- The user's guesses will be inserted here dynamically -->
+            </div>
+    
+            <button class="btn blue" id="close-modal-btn">Back</button>
+        </div>
+    </div>
+
+    <script src="/Fabricate/public/results.js"></script>
+</body>
+</html>

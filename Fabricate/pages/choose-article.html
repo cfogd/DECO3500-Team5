@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose an Article</title>
+    <link rel="stylesheet" href="/Fabricate/public/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Choose an Article</h1>
+
+        <div id="timer-bar">
+            <span>Time Remaining: <span id="time-remaining">180</span> seconds</span>
+            <div class="progress-bar">
+                <div id="progress" class="progress"></div>
+            </div>
+        </div>
+
+        <div class="articles">
+            <div class="article-option" id="article-1">
+                <h2>Trump tells rally Kamala Harris ‘wouldn’t have won The Apprentice’</h2>
+                <p>Donald Trump reprised his role of a reality TV character during a rally in Waunakee, Wisconsin, on Tuesday, telling voters in the key swing state that his Democratic rival Kamala Harris wouldn’t have succeeded on his business competition show.</p>
+                <img src="/Fabricate/assets/trump.jpeg" alt="Trump Rally">
+            </div>
+
+            <div class="article-option" id="article-2">
+                <h2>'Leonardo DiCaprio' snake with bright orange eyes discovered in Panama jungle</h2>
+                <p>Slithering among shrubs in the foothill forests of Panama, there is a snake the color of burnt embers, with round eyes like glowing coals. The snake, soon to be named DiCaprio's snail-eating snake (Sibon irmelindicaprioae), is one of five newfound species living in the jungles of Central and South America. In a new study, researchers described the new species and shed light on how gold and copper mining operations in the region may threaten other stunning snakes.</p>
+                <img src="/Fabricate/assets/snake.jpeg" alt="Panama Snake">
+            </div>
+        </div>
+
+        <!-- Modal for Editing the Article -->
+        <div id="edit-article-modal" class="modal">
+            <div class="modal-content">
+                <span class="close" id="close-edit-modal">&times;</span>
+                <h2>Edit Article</h2>
+                
+                <form id="edit-article-form">
+                    <div class="form-group">
+                        <label for="article-title-input">Article Title</label>
+                        <input type="text" id="article-title-input" class="input-field" placeholder="Edit the article title" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="article-content-textarea">Article Content</label>
+                        <textarea id="article-content-textarea" class="input-field" rows="5" placeholder="Edit the article content" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn blue" id="submit-edit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+
+        <button id="select-article-btn" class="btn gray" disabled>Select Article</button>
+    </div>
+
+    <script src="/Fabricate/public/choose-article.js"></script>
+</body>
+</html>

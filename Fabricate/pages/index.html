@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabricate - Fake News Game</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Fabricate</h1>
+
+        <p>Can you fool your friends with fake news?</p>
+
+        <button id="create-game-btn" class="btn" onclick="create_game()">Create Game</button>
+
+        <div class="join-game">
+            <input type="text" id="join-nickname" placeholder="Nickname" />
+            <input type="text" id="game-code" placeholder="Game Code" />
+            <button id="join-game-btn" class="btn" onclick="join_game()">Join</button>
+        </div>
+
+        <a href="#" id="how-to-play">How to Play</a>
+    </div>
+
+    <!-- How to Play Modal -->
+    <div id="how-to-play-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <h2>How to Play</h2>
+            <div class="steps">
+                <div class="step">
+                    <h3>Step 1: Join or Create a Game</h3>
+                    <p>Start a new game with your friends or join one by entering a game code. Let the fun begin!</p>
+                </div>
+                <div class="step">
+                    <h3>Step 2: Edit a News Article</h3>
+                    <p>Choose from two real articles. Get creative and edit one into a fake news story to trick your friends.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 3: Flag the Fake News</h3>
+                    <p>Review the edited and unedited articles and flag the ones you think are fake. Can you spot the deception?</p>
+                </div>
+                <div class="step">
+                    <h3>Step 4: Discussion</h3>
+                    <p>Discuss the flagged articles with your friends and come to a decision about whether they are fake or not. 
+                        Be careful, could someone be lying?</p>
+                </div>
+                <div class="step">
+                    <h3>Step 5: Win the Game!</h3>
+                    <p>Fool the most friends or spot the most fake articles to win!</p>
+                </div>
+            </div>
+            <button id="back-to-home" class="btn">Back to Home</button>
+        </div>
+    </div>
+
+    <script src="/intro.js"></script>
+</body>
+</html>
