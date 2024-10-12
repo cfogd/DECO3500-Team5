@@ -674,13 +674,13 @@ body.confetti-active {
     vertical-align: middle;
 }
 
-.user-vote.fake::before {
-    background-image: url('/Fabricate/assets/icons/fake-icon.png'); /* Replace with actual icon path */
-}
+/* .user-vote.fake::before {
+    background-image: url('/Fabricate/assets/icons/fake-icon.png'); Replace with actual icon path
+} */
 
-.user-vote.real::before {
-    background-image: url('/Fabricate/assets/icons/real-icon.png'); /* Replace with actual icon path */
-}
+/* .user-vote.real::before {
+    background-image: url('/Fabricate/assets/icons/real-icon.png'); Replace with actual icon path
+} */
 
 /* Optional: Disabled Button Styles Adjustment */
 .btn.gray.active {

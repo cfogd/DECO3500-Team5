@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const TIME_TO_ENABLE_BUTTONS = 15; // seconds
     const TIME_PER_ARTICLE = 45; // seconds
-    const TOTAL_VOTES = 7;
+    const TOTAL_VOTES = 6;
 
     let timeRemaining = TIME_PER_ARTICLE;
     const timerElement = document.getElementById('time-remaining');

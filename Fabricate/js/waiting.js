@@ -78,12 +78,6 @@ function addPlayerAtRandomInterval() {
     }
 }
 
-// Generate random colors for players
-// function getRandomColor() {
-//     const colors = ['#FF1493', '#1E90FF', '#32CD32', '#FFD700', '#FFA500', '#8A2BE2', '#FF4500'];
-//     return colors[Math.floor(Math.random() * colors.length)];
-// }
-
 // Start adding players at random intervals
 addPlayerAtRandomInterval();
 
