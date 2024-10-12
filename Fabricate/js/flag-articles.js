@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const doneBtn = document.getElementById('done-btn');
     const userVoteElement = document.getElementById('user-vote');
 
+    // Animated Titles Elements
+    const discussTitle = document.getElementById('discuss-title');
+    const votingTitle = document.getElementById('voting-title');
+
     const dummyArticles = [
         { 
             title: 'Man claiming to be the brother of Jesus arrested after wild pursuit', 
@@ -67,11 +71,20 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reset user vote display
         resetUserVoteDisplay();
 
+        // Show "Discussion Phase" animated title
+        showDiscussTitle();
+
         // Disable flag buttons initially
         disableFlagButtons();
 
         // Start the 15-second disable timer
         setTimeout(() => {
+            // Hide "Discussion Phase" title
+            hideDiscussTitle();
+
+            // Show "Voting Phase" animated title
+            showVotingTitle();
+
             enableFlagButtons();
             // Start simulating votes
             simulateVotes();
@@ -125,6 +138,42 @@ document.addEventListener('DOMContentLoaded', () => {
         userVoteElement.classList.remove('fake', 'real');
         userVoteElement.style.display = 'none';
         userHasVoted = false;
+    }
+
+    // Show "Discussion Phase" animated title
+    function showDiscussTitle() {
+        discussTitle.style.display = 'block';
+        discussTitle.style.animationName = 'fadeInDown';
+    }
+
+    // Hide "Discussion Phase" animated title
+    function hideDiscussTitle() {
+        discussTitle.style.animationName = 'fadeOutUp';
+        // Hide after animation completes (1s)
+        setTimeout(() => {
+            discussTitle.style.display = 'none';
+        }, 1000);
+    }
+
+    // Show "Voting Phase" animated title
+    function showVotingTitle() {
+        votingTitle.style.display = 'block';
+        votingTitle.style.animationName = 'fadeInUp';
+        // Optionally, hide the voting title after some time
+        setTimeout(() => {
+            votingTitle.style.animationName = 'fadeOutDown';
+            setTimeout(() => {
+                votingTitle.style.display = 'none';
+            }, 1000);
+        }, 3000); // Show for 3 seconds
+    }
+
+    // Hide "Voting Phase" animated title (called manually if needed)
+    function hideVotingTitle() {
+        votingTitle.style.animationName = 'fadeOutDown';
+        setTimeout(() => {
+            votingTitle.style.display = 'none';
+        }, 1000);
     }
 
     // Reset and start the countdown timer
@@ -198,6 +247,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!flaggedArticles.some(fa => fa.article === dummyArticles[currentArticleIndex])) {
             flaggedArticles.push({ article: dummyArticles[currentArticleIndex], flag: 'undecided' });
         }
+
+        // Hide "Voting Phase" title if it's still visible
+        hideVotingTitle();
 
         // Load the next article after a short delay for smooth transition
         setTimeout(() => {
