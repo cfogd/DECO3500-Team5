@@ -20,9 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const dummyArticles = [
         { 
-            title: 'Scientists Sequence DNA From 3,600-Year-Old Cheese', 
-            blurb: 'A decade after its discovery in the Taklamakan Desert, paleogeneticists in China have extracted and sequenced DNA from cheese found in a Bronze Age grave. "This is why you should never sequence DNA when you’re hungry." stated Associate James Weiss.', 
-            image: '/Fabricate/assets/CHEESE.jpg' // Ensure this path is correct
+            title: 'Man claiming to be the brother of Jesus arrested after wild pursuit', 
+            blurb: 'A 30-year-old man, claiming to be the brother of Jesus, has been arrested for allegedly leading police on a wild pursuit through south-west Sydney.', 
+            image: '/Fabricate/assets/arrested.jpg' // Ensure this path is correct
         },
         { 
             title: 'Michael Schumacher ‘seen’ in public for first time in 11 years', 
