@@ -7,7 +7,7 @@ const funTipElement = document.getElementById('fun-tip');
 const nickname = localStorage.getItem("nickname");
 const nextPage = localStorage.getItem("nextPage");
 
-const players = [nickname, 'Player2', 'Player3', 'Player4', 'Player5', 'Player6', 'Player7'];
+const players = [nickname, 'Kamala', 'Joe', 'Donald', 'George', 'Bernie'];
 let currentPlayerIndex = 0;
 
 // Fun tips array
@@ -42,7 +42,7 @@ function addPlayerAtRandomInterval() {
         const playerElement = document.createElement('div');
         playerElement.textContent = players[currentPlayerIndex];
         playerElement.classList.add('player');
-        playerElement.style.color = getRandomColor();
+        playerElement.style.color = localStorage.getItem(`p${currentPlayerIndex}color`);
 
         // Optional: Add avatar emojis
         const avatar = document.createElement('span');
@@ -76,12 +76,6 @@ function addPlayerAtRandomInterval() {
             setTimeout(addPlayerAtRandomInterval, randomInterval); // Recursively add the next player
         }
     }
-}
-
-// Generate random colors for players
-function getRandomColor() {
-    const colors = ['#FF1493', '#1E90FF', '#32CD32', '#FFD700', '#FFA500', '#8A2BE2', '#FF4500'];
-    return colors[Math.floor(Math.random() * colors.length)];
 }
 
 // Start adding players at random intervals

@@ -12,12 +12,6 @@ Our design concept is Fabricate, a social and mobile fake news game.
 
 5. **Win the Game:** Fool the most friends or spot the most fake articles to win!
 
-## How to download
-1. Clone repository to local device
-2. Open terminal in VS Code and run `npm install ably`
-3. In .env, add the API key
-4. In the terminal, run `node server.js`
-
 # Wiki
 Design Overview
 

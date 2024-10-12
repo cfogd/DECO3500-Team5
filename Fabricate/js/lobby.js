@@ -1,15 +1,16 @@
 const myNickname = localStorage.getItem("nickname");
 const gameCode = localStorage.getItem("gameCode");
-const colors = ['red', 'blue', 'green', 'brown', 'purple', 'orange'];
+let colors = ['red', 'blue', 'green', 'hotpink', 'purple', 'orange'];
+let colorsRemaining = 6;
 
 // Simulate the list of players, could be replaced with a dynamic list based on actual game data
 let players = [
-    { name: myNickname, crown: true, color: colors[0] },
-    { name: 'Player2', crown: false, color: colors[1] },
-    { name: 'Player3', crown: false, color: colors[2] },
-    { name: 'Player4', crown: false, color: colors[3] },
-    { name: 'Player5', crown: false, color: colors[4] },
-    { name: 'Player6', crown: false, color: colors[5] }
+    { name: myNickname, crown: true, color: ''},
+    { name: 'Kamala', crown: false, color: ''},
+    { name: 'Joe', crown: false, color: '' },
+    { name: 'Donald', crown: false, color: '' },
+    { name: 'George', crown: false, color: ''},
+    { name: 'Bernie', crown: false, color: ''}
 ];
 
 // Function to render players dynamically
@@ -21,7 +22,13 @@ function renderPlayers() {
 
     players.forEach(player => {
         let li = document.createElement('li');
-        li.style.backgroundColor = players[count].color;
+        let randInt = Math.floor(Math.random() * colorsRemaining);
+        let playerColor = colors[randInt];
+        colors.splice(randInt, 1);
+        colorsRemaining--;
+        players[count].color = playerColor;
+        localStorage.setItem(`p${count}color`, playerColor);
+        li.style.backgroundColor = playerColor;
         li.textContent = `${player.name}`;
         if (player.crown) {
             const crown = document.createElement('span');
@@ -36,8 +43,6 @@ function renderPlayers() {
 
 // Call renderPlayers when the page loads
 window.onload = renderPlayers;
-
-
 
 // Function to show temporary notification
 function showNotification(message) {
