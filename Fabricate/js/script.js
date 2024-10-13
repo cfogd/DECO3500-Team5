@@ -1,4 +1,5 @@
-let nickname = "";
+let p1Nickname = "";
+let p2Nickname = "";
 let gameCode = "";
 
 // Function to show temporary notification
@@ -23,48 +24,48 @@ function getRandomRoomId() {
 function create_game() {
     // clear local storage
     localStorage.clear();
-
-    let nicknameInput = document.getElementById("join-nickname");
-    nickname = nicknameInput.value;
-    localStorage.setItem("nickname", nickname);
+    p1Nickname = document.getElementById("join-nickname-1").value;
+    p2Nickname = document.getElementById("join-nickname-2").value;
+    localStorage.setItem("p1Nickname", p1Nickname);
+    localStorage.setItem("p2Nickname", p2Nickname);
     gameCode = getRandomRoomId();
     localStorage.setItem("isHost", true);
     localStorage.setItem("gameCode", gameCode);
     
     // Redirect to the lobby.html page
-    if (nickname) {
+    if (p1Nickname && p2Nickname) {
         window.location.href = 'lobby.html';
     } else {
-        alert('Please enter a Nickname!')
+        alert('Please enter two Nicknames!')
     }
 }
 
-function join_game() {
-    // clear local storage
-    localStorage.clear();
+// function join_game() {
+//     // clear local storage
+//     localStorage.clear();
 
-    // Get nickname
-    let nicknameInput = document.getElementById("join-nickname");
-    nickname = nicknameInput.value;
-    localStorage.setItem("nickname", nickname);
+//     // Get nickname
+//     let nicknameInput = document.getElementById("join-nickname");
+//     nickname = nicknameInput.value;
+//     localStorage.setItem("nickname", nickname);
 
-    gameCode = document.getElementById('game-code').value;
-    localStorage.setItem("isHost", false);
-    localStorage.setItem("nickname", nickname);
-    localStorage.setItem("gameCode", gameCode);
+//     gameCode = document.getElementById('game-code').value;
+//     localStorage.setItem("isHost", false);
+//     localStorage.setItem("nickname", nickname);
+//     localStorage.setItem("gameCode", gameCode);
 
-    if (nickname) {
-        if (gameCode) {
-            showNotification(`Joining game with code ${gameCode}...`);
-            // Placeholder for joining game logic
-            setTimeout(() => window.location.href = 'lobby.html', 2000);
-        } else {
-            alert('Please enter a Game Code!');
-        }
-    } else {
-        alert('Please enter a Nickname!')
-    }
-}
+//     if (nickname) {
+//         if (gameCode) {
+//             showNotification(`Joining game with code ${gameCode}...`);
+//             // Placeholder for joining game logic
+//             setTimeout(() => window.location.href = 'lobby.html', 2000);
+//         } else {
+//             alert('Please enter a Game Code!');
+//         }
+//     } else {
+//         alert('Please enter a Nickname!')
+//     }
+// }
 
 // Modal functionality
 const modal = document.getElementById('how-to-play-modal');

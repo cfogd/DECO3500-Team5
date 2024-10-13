@@ -8,7 +8,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Choose an Article</h1>
+        <h1><span id="currentPlayer"></span>: Choose an Article</h1>
 
         <div id="timer-bar">
             <span>Time Remaining: <span id="time-remaining">180</span> seconds</span>
@@ -19,16 +19,15 @@
 
         <div class="articles">
             <div class="article-option" id="article-1">
-                <h2>'Thought he was going to pull the officer's eye out': Passenger recalls man's alleged frenzied 
-                    attempt to hijack bus full of tourists in Adelaide</h2>
-                <p> A man has been charged after allegedly assaulting police during a frenzied attempt to hijack a bus packed with tourists in Adelaide.</p>
-                <img src="/Fabricate/assets/bus.jpg" alt="Bus Attack">
+                <h2 id="a1Title">'Thought he was going to pull the officer's eye out': Passenger recalls man's alleged frenzied attempt to hijack bus full of tourists in Adelaide</h2>
+                <p id="a1Content">A man has been charged after allegedly assaulting police during a frenzied attempt to hijack a bus packed with tourists in Adelaide.</p>
+                <img id="a1Img" src="/Fabricate/assets/bus.jpg" alt="Bus Attack">
             </div>
 
             <div class="article-option" id="article-2">
-                <h2>Brawl between cyclist and postman caught on camera</h2>
-                <p>An ugly brawl between a local postman and a cyclist has been caught on camera over a traffic incident.</p>
-                <img src="/Fabricate/assets/brawl.png" alt="Brawl">
+                <h2 id="a2Title">Brawl between cyclist and postman caught on camera</h2>
+                <p id="a2Content">An ugly brawl between a local postman and a cyclist has been caught on camera over a traffic incident.</p>
+                <img id="a2Img" src="/Fabricate/assets/brawl.png" alt="Brawl">
             </div>
         </div>
 
@@ -41,7 +40,8 @@
                 <form id="edit-article-form">
                     <div class="form-group">
                         <label for="article-title-input">Article Title</label>
-                        <input type="text" id="article-title-input" class="input-field" placeholder="Edit the article title" required>
+                        <textarea id="article-title-input" class="input-field" rows="3" placeholder="Edit the article title" required></textarea>
+                        <!-- <input type="text" id="article-title-input" class="input-field" rows="2" placeholder="Edit the article title" required> -->
                     </div>
 
                     <div class="form-group">

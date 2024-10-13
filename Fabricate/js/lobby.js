@@ -1,16 +1,17 @@
-const myNickname = localStorage.getItem("nickname");
+const p1Nickname = localStorage.getItem("p1Nickname");
+const p2Nickname = localStorage.getItem("p2Nickname");
 const gameCode = localStorage.getItem("gameCode");
 let colors = ['red', 'blue', 'green', 'hotpink', 'purple', 'orange'];
 let colorsRemaining = 6;
 
 // Simulate the list of players, could be replaced with a dynamic list based on actual game data
 let players = [
-    { name: myNickname, crown: true, color: ''},
-    { name: 'Zi', crown: false, color: ''},
+    { name: p1Nickname, crown: true, color: ''},
+    { name: p2Nickname, crown: false, color: ''},
     { name: 'Emily', crown: false, color: '' },
     { name: 'Catherine', crown: false, color: '' },
     { name: 'Talia', crown: false, color: ''},
-    { name: 'Matt', crown: false, color: ''}
+    { name: 'Zi', crown: false, color: ''}
 ];
 
 // Function to render players dynamically

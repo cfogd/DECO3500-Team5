@@ -16,13 +16,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const flagFakeBtn = document.getElementById('flag-fake');
     const flagRealBtn = document.getElementById('flag-real');
     const doneBtn = document.getElementById('done-btn');
-    const userVoteElement = document.getElementById('user-vote');
+    const p1VoteElement = document.getElementById('p1-vote');
+    const p2VoteElement = document.getElementById('p2-vote');
 
     // Animated Titles Elements
     const discussTitle = document.getElementById('discuss-title');
     const votingTitle = document.getElementById('voting-title');
 
+    let currentPlayer = 1;
+    const p1Nickname = localStorage.getItem('p1Nickname');
+    const p2Nickname = localStorage.getItem('p2Nickname');
+
     const dummyArticles = [
+        {
+            title: localStorage.getItem('brawlTitle'),
+            blurb: localStorage.getItem('brawlContent'),
+            image: '/Fabricate/assets/brawl.png',
+            real: localStorage.getItem("brawlReal") == "true"
+        },
+        {
+            title: localStorage.getItem('busTitle'),
+            blurb: localStorage.getItem('busContent'),
+            image: '/Fabricate/assets/bus.jpg',
+            real: localStorage.getItem("busReal") == "true"
+        },
         { 
             title: 'Man claiming to be the brother of Jesus arrested after wild pursuit', 
             blurb: 'A 30-year-old man, claiming to be the brother of Jesus, has been arrested for allegedly leading police on a wild pursuit through south-west Sydney.', 
@@ -30,34 +47,36 @@ document.addEventListener('DOMContentLoaded', () => {
             real: false
         },
         { 
-            title: "Viewers stunned by wild plane crash at Bathurst 1000", 
-            blurb: 'The Bathurst 1000 has witnessed some truly bizarre scenes, with a pre-race plane landing going awry on the track, leaving viewers lost for words.', 
-            image: '/Fabricate/assets/plane.jpg',
-            real: true
+            title: localStorage.getItem('stonehengeTitle'),
+            blurb: localStorage.getItem('stonehengeContent'),
+            image: '/Fabricate/assets/stonehenge.jpg',
+            real: localStorage.getItem("stonehengeReal") == "true"
         },
         { 
-            title: "‘Be wary’: Aussie doctor exposes massive paracetamol danger", 
-            blurb: "Carcinogenic chemicals have been found in paracetamol in a Sydney pharmacy, resulting in a family being hospitalised", 
+            title: localStorage.getItem('planeTitle'),
+            blurb: localStorage.getItem('planeContent'),
+            image: '/Fabricate/assets/plane.jpg',
+            real: localStorage.getItem("planeReal") == "true"
+        },
+        { 
+            title: "‘Be wary’: Aussie doctor exposes 'deadly' paracetamol contamination", 
+            blurb: "Carcinogenic chemicals have been found in paracetamol in a Sydney pharmacy, which can catalyse deadly cancer cells.", 
             image: '/Fabricate/assets/pills.jpg',
             real: false
         },
-        {
-            title: 'Aussie researchers make groundbreaking Stonehenge discovery',
-            blurb: 'Researchers analysed samples from the centre stone and discovered it actually originated from Scotland, some 750 kilometres away.',
-            image: '/Fabricate/assets/stonehenge.jpg',
-            real: true
-        }
     ];
 
     let currentArticleIndex = 0;
     let flaggedArticles = [];
     let countdownInterval;
     let voteTimeouts = [];
-    let votesReceived = 1;
+    let votesReceived = 0;
     let voteCompleted = false;
     let timerCompleted = false;
-    let userHasVoted = false; // Track if the user has voted
-    let score = 0;
+    let p1HasVoted = false;
+    let p2HasVoted = false;
+    let p1Score = 0;
+    let p2Score = 0;
 
     // Load the current article
     function loadArticle(index) {
@@ -145,10 +164,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Reset user vote display
     function resetUserVoteDisplay() {
-        userVoteElement.textContent = '';
-        userVoteElement.classList.remove('fake', 'real');
-        userVoteElement.style.display = 'none';
-        userHasVoted = false;
+        currentPlayer = 1;
+        p1VoteElement.textContent = '';
+        p1VoteElement.classList.remove('fake', 'real');
+        p1VoteElement.style.display = 'none';
+        p2VoteElement.textContent = '';
+        p2VoteElement.classList.remove('fake', 'real');
+        p2VoteElement.style.display = 'none';
+        p1HasVoted = false;
+        p2HasVoted = false;
     }
 
     // Show "Discussion Phase" animated title
@@ -271,31 +295,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Handle user vote
     function handleUserVote(flagType) {
-        if (userHasVoted) return; // Prevent multiple votes
-
-        userHasVoted = true;
+        if (p1HasVoted && p2HasVoted) return; // Prevent multiple votes
 
         // Record the user's vote
         flaggedArticles.push({ article: dummyArticles[currentArticleIndex], flag: flagType });
 
         // Update the user vote display
         if (flagType === 'fake') {
-            userVoteElement.textContent = 'You voted: Fake';
-            userVoteElement.classList.add('fake');
-            if(!dummyArticles[currentArticleIndex].real) {
-                score++;
+            if(currentPlayer == 1) {
+                p1VoteElement.style.display = 'block';
+                p1VoteElement.textContent = `${p1Nickname} voted: Fake`;
+                p1VoteElement.classList.add('fake');
+                if(!dummyArticles[currentArticleIndex].real) {
+                    p1Score++;
+                }
+                alert(`Time for ${p2Nickname} to vote!`)
+            } else {
+                p2VoteElement.style.display = 'block';
+                p2VoteElement.textContent = `${p2Nickname} voted: Fake`;
+                p2VoteElement.classList.add('fake');
+                if(!dummyArticles[currentArticleIndex].real) {
+                    p2Score++;
+                }
             }
         } else if (flagType === 'real') {
-            userVoteElement.textContent = 'You voted: Real';
-            userVoteElement.classList.add('real');
-            if(dummyArticles[currentArticleIndex].real) {
-                score++;
+            if(currentPlayer == 1) {
+                p1VoteElement.style.display = 'block';
+                p1VoteElement.textContent = `${p1Nickname} voted: Real`;
+                p1VoteElement.classList.add('real');
+                alert(`Time for ${p2Nickname} to vote!`);
+                if(dummyArticles[currentArticleIndex].real) {
+                    p1Score++;
+                }
+            } else {
+                p2VoteElement.style.display = 'block';
+                p2VoteElement.textContent = `${p2Nickname} voted: Real`;
+                p2VoteElement.classList.add('real');
+                if(dummyArticles[currentArticleIndex].real) {
+                    p2Score++;
+                }
             }
         }
-        userVoteElement.style.display = 'block';
 
-        // Disable the buttons after voting
-        disableFlagButtons();
+        if(currentPlayer == 1) {
+            p1HasVoted = true;
+            currentPlayer++;
+        } else {
+            p2HasVoted = true;
+            disableFlagButtons();
+        }
     }
 
     // Event listeners for flagging articles
@@ -322,7 +370,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to redirect back to the waiting screen
     function redirectToWaitingScreen() {
         localStorage.setItem("nextPage", "results");
-        localStorage.setItem("score", score);
+        localStorage.setItem("p1Score", p1Score);
+        localStorage.setItem("p2Score", p2Score);
         window.location.href = 'waiting.html';
     }
 
