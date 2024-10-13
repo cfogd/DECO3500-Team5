@@ -7,7 +7,7 @@ const funTipElement = document.getElementById('fun-tip');
 const nickname = localStorage.getItem("nickname");
 const nextPage = localStorage.getItem("nextPage");
 
-const players = [nickname, 'Kamala', 'Joe', 'Donald', 'George', 'Bernie'];
+const players = [nickname, 'Zi', 'Emily', 'Catherine', 'Talia', 'Matt'];
 let currentPlayerIndex = 0;
 
 // Fun tips array

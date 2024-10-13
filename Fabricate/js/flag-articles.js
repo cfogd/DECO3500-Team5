@@ -1,7 +1,7 @@
 // flag-articles.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    const TIME_TO_ENABLE_BUTTONS = 15; // seconds
+    const TIME_TO_ENABLE_BUTTONS = 10; // seconds
     const TIME_PER_ARTICLE = 45; // seconds
     const TOTAL_VOTES = 6;
 
@@ -26,17 +26,26 @@ document.addEventListener('DOMContentLoaded', () => {
         { 
             title: 'Man claiming to be the brother of Jesus arrested after wild pursuit', 
             blurb: 'A 30-year-old man, claiming to be the brother of Jesus, has been arrested for allegedly leading police on a wild pursuit through south-west Sydney.', 
-            image: '/Fabricate/assets/arrested.jpg' // Ensure this path is correct
+            image: '/Fabricate/assets/arrested.jpg',
+            real: false
         },
         { 
-            title: 'Michael Schumacher ‘seen’ in public for first time in 11 years', 
-            blurb: 'Michael Schumacher has reportedly been seen in public for the first time in 11 years. The Formula 1 icon was reportedly present when daughter Gina married partner Iain Bethke over the weekend in Majorca.', 
-            image: '/Fabricate/assets/SHOE.jpeg' // Ensure this path is correct
+            title: "Viewers stunned by wild plane crash at Bathurst 1000", 
+            blurb: 'The Bathurst 1000 has witnessed some truly bizarre scenes, with a pre-race plane landing going awry on the track, leaving viewers lost for words.', 
+            image: '/Fabricate/assets/plane.jpg',
+            real: true
         },
         { 
-            title: 'Vatican City Police Unveil New Unit Of Sin-Sniffing Dogs', 
-            blurb: 'VATICAN CITY—In an effort to curb a rising number of immoral offenses, the Corps of Gendarmerie of Vatican City announced Friday the deployment of a new unit of highly trained sin-sniffing dogs. “This unit of elite K-9 officers has been taught to alert their handlers to sinful behavior by loudly barking and immediately engaging the impious subject in pursuit,” said a top official for the papal state’s police force', 
-            image: '/Fabricate/assets/DOG.jpeg' // Ensure this path is correct
+            title: "‘Be wary’: Aussie doctor exposes massive paracetamol danger", 
+            blurb: "Carcinogenic chemicals have been found in paracetamol in a Sydney pharmacy, resulting in a family being hospitalised", 
+            image: '/Fabricate/assets/pills.jpg',
+            real: false
+        },
+        {
+            title: 'Aussie researchers make groundbreaking Stonehenge discovery',
+            blurb: 'Researchers analysed samples from the centre stone and discovered it actually originated from Scotland, some 750 kilometres away.',
+            image: '/Fabricate/assets/stonehenge.jpg',
+            real: true
         }
     ];
 
@@ -44,10 +53,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let flaggedArticles = [];
     let countdownInterval;
     let voteTimeouts = [];
-    let votesReceived = 0;
+    let votesReceived = 1;
     let voteCompleted = false;
     let timerCompleted = false;
     let userHasVoted = false; // Track if the user has voted
+    let score = 0;
 
     // Load the current article
     function loadArticle(index) {
@@ -55,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // All articles have been flagged
             doneBtn.disabled = false;
             doneBtn.classList.remove('gray');
+            doneBtn.style.display = 'block';
             doneBtn.classList.add('active');
             doneBtn.textContent = 'Done';
             return;
@@ -205,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function simulateVotes() {
         for (let i = 0; i < TOTAL_VOTES; i++) {
             // Random delay between 1 to (TIME_PER_ARTICLE - TIME_TO_ENABLE_BUTTONS) seconds
-            const maxDelay = (TIME_PER_ARTICLE - TIME_TO_ENABLE_BUTTONS) * 1000;
+            const maxDelay = (TIME_PER_ARTICLE - TIME_TO_ENABLE_BUTTONS) * 500;
             const delay = Math.floor(Math.random() * (maxDelay - 1000)) + 1000; // At least 1 second
 
             const timeout = setTimeout(() => {
@@ -271,9 +282,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (flagType === 'fake') {
             userVoteElement.textContent = 'You voted: Fake';
             userVoteElement.classList.add('fake');
+            if(!dummyArticles[currentArticleIndex].real) {
+                score++;
+            }
         } else if (flagType === 'real') {
             userVoteElement.textContent = 'You voted: Real';
             userVoteElement.classList.add('real');
+            if(dummyArticles[currentArticleIndex].real) {
+                score++;
+            }
         }
         userVoteElement.style.display = 'block';
 
@@ -294,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Done button event listener
     doneBtn.addEventListener('click', function() {
-        alert('You have completed flagging the articles.');
+        // alert('You have completed flagging the articles.');
 
         // Save the flagged articles and remaining time if needed
         localStorage.setItem('flaggedArticles', JSON.stringify(flaggedArticles));
@@ -305,6 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Function to redirect back to the waiting screen
     function redirectToWaitingScreen() {
         localStorage.setItem("nextPage", "results");
+        localStorage.setItem("score", score);
         window.location.href = 'waiting.html';
     }
 

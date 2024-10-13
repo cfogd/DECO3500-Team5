@@ -6,11 +6,11 @@ let colorsRemaining = 6;
 // Simulate the list of players, could be replaced with a dynamic list based on actual game data
 let players = [
     { name: myNickname, crown: true, color: ''},
-    { name: 'Kamala', crown: false, color: ''},
-    { name: 'Joe', crown: false, color: '' },
-    { name: 'Donald', crown: false, color: '' },
-    { name: 'George', crown: false, color: ''},
-    { name: 'Bernie', crown: false, color: ''}
+    { name: 'Zi', crown: false, color: ''},
+    { name: 'Emily', crown: false, color: '' },
+    { name: 'Catherine', crown: false, color: '' },
+    { name: 'Talia', crown: false, color: ''},
+    { name: 'Matt', crown: false, color: ''}
 ];
 
 // Function to render players dynamically

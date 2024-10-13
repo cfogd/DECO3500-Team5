@@ -1,22 +1,36 @@
 // Assuming the results are coming from the game server or local data
 const nickname = localStorage.getItem("nickname");
+const score = localStorage.getItem("score");
+
 const gameResults = {
+    playerScore: score,
     mostDeceptive: { player: nickname, deceivedCount: 5 },
-    bestDetective: { player: "Player5", sortedCount: 9 },
-    superPredictable: { player: "Player5" },
-    worstDetective: { player: "Player2", sortedCount: 2 }
+    bestDetective: { player: "Catherine", sortedCount: 9 },
+    superPredictable: { player: "Zi", predictableCount: 4 },
+    worstDetective: { player: "Matt", sortedCount: 2 }
 };
 
 // Fill in the results on the page
-document.getElementById("most-deceptive").textContent = gameResults.mostDeceptive.player;
+document.getElementById("player-score").textContent = gameResults.playerScore;
+
+let mostDeceptivePlayer = document.getElementById("most-deceptive");
+mostDeceptivePlayer.textContent = gameResults.mostDeceptive.player;
+mostDeceptivePlayer.style.color = localStorage.getItem("p0color");
 document.getElementById("deceptive-count").textContent = gameResults.mostDeceptive.deceivedCount;
 
-document.getElementById("best-detective").textContent = gameResults.bestDetective.player;
+let bestDetectivePlayer = document.getElementById("best-detective");
+bestDetectivePlayer.textContent = gameResults.bestDetective.player;
+bestDetectivePlayer.style.color = localStorage.getItem("p3color");
 document.getElementById("detective-count").textContent = gameResults.bestDetective.sortedCount;
 
-document.getElementById("super-predictable").textContent = gameResults.superPredictable.player;
+let superPredictablePlayer = document.getElementById("super-predictable");
+superPredictablePlayer.textContent = gameResults.superPredictable.player;
+superPredictablePlayer.style.color = localStorage.getItem("p1color");
+document.getElementById("predictable-count").textContent = gameResults.superPredictable.predictableCount;
 
-document.getElementById("worst-detective").textContent = gameResults.worstDetective.player;
+let worstDetectivePlayer = document.getElementById("worst-detective");
+worstDetectivePlayer.textContent = gameResults.worstDetective.player;
+worstDetectivePlayer.style.color = localStorage.getItem("p5color");
 document.getElementById("worst-detective-count").textContent = gameResults.worstDetective.sortedCount;
 
 // Dummy data representing the user's guesses for each article

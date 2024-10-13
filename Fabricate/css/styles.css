@@ -17,6 +17,10 @@
     --error-color: #DC3545; /* Red for errors */
 }
 
+#done-btn {
+    display: none;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -55,6 +59,13 @@ h1, #lobby-code {
     margin-bottom: 20px;
     text-transform: uppercase;
     letter-spacing: 2px;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 h2 {
@@ -315,6 +326,13 @@ a:active, a:focus {
     margin-bottom: 20px;
 }
 
+#players {
+    margin-left: 170px;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
 #player-list {
     list-style-type: none;
     padding: 0;
@@ -442,7 +460,7 @@ a:active, a:focus {
 }
 
 .player-name {
-    color: var(--secondary-color);
+    /* color: var(--secondary-color); */
     font-weight: bold;
 }
 
@@ -619,7 +637,9 @@ body.confetti-active {
 /* User Vote Display */
 .user-vote {
     margin-top: 15px;
+    margin-bottom: 15px;
     text-align: center;
+    margin-right: 20px;
     font-size: 16px;
     font-weight: bold;
     display: none; /* Hidden by default */
@@ -630,6 +650,8 @@ body.confetti-active {
 }
 
 .user-vote.real {
+    display: flex;
+    align-items: center;
     color: var(--success-color); /* Green for Real */
 }
 
