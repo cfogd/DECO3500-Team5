@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const TIME_TO_ENABLE_BUTTONS = 10; // seconds
-    const TIME_PER_ARTICLE = 45; // seconds
+    const TIME_PER_ARTICLE = 60; // seconds
     const TOTAL_VOTES = 6;
 
     let timeRemaining = TIME_PER_ARTICLE;
@@ -28,6 +28,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const p2Nickname = localStorage.getItem('p2Nickname');
 
     const dummyArticles = [
+        { 
+            title: 'Man claiming to be the brother of Jesus arrested after wild pursuit', 
+            blurb: 'A 30-year-old man, claiming to be the brother of Jesus, has been arrested for allegedly leading police on a wild pursuit through south-west Sydney.', 
+            image: '/Fabricate/assets/arrested.jpg',
+            real: false
+        },
         {
             title: localStorage.getItem('brawlTitle'),
             blurb: localStorage.getItem('brawlContent'),
@@ -41,9 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
             real: localStorage.getItem("busReal") == "true"
         },
         { 
-            title: 'Man claiming to be the brother of Jesus arrested after wild pursuit', 
-            blurb: 'A 30-year-old man, claiming to be the brother of Jesus, has been arrested for allegedly leading police on a wild pursuit through south-west Sydney.', 
-            image: '/Fabricate/assets/arrested.jpg',
+            title: "‘Be wary’: Aussie doctor exposes 'deadly' paracetamol contamination", 
+            blurb: "Carcinogenic chemicals have been found in paracetamol in a Sydney pharmacy, which can catalyse deadly cancer cells.", 
+            image: '/Fabricate/assets/pills.jpg',
             real: false
         },
         { 
@@ -57,12 +63,6 @@ document.addEventListener('DOMContentLoaded', () => {
             blurb: localStorage.getItem('planeContent'),
             image: '/Fabricate/assets/plane.jpg',
             real: localStorage.getItem("planeReal") == "true"
-        },
-        { 
-            title: "‘Be wary’: Aussie doctor exposes 'deadly' paracetamol contamination", 
-            blurb: "Carcinogenic chemicals have been found in paracetamol in a Sydney pharmacy, which can catalyse deadly cancer cells.", 
-            image: '/Fabricate/assets/pills.jpg',
-            real: false
         },
     ];
 
@@ -192,6 +192,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Show "Voting Phase" animated title
     function showVotingTitle() {
+        if (currentPlayer == 1) {
+            alert(`Time for ${p1Nickname} to vote! Hide your screen!`);
+        }
         votingTitle.style.display = 'block';
         votingTitle.style.animationName = 'fadeInUp';
         // Optionally, hide the voting title after some time
@@ -240,8 +243,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function simulateVotes() {
         for (let i = 0; i < TOTAL_VOTES; i++) {
             // Random delay between 1 to (TIME_PER_ARTICLE - TIME_TO_ENABLE_BUTTONS) seconds
-            const maxDelay = (TIME_PER_ARTICLE - TIME_TO_ENABLE_BUTTONS) * 500;
-            const delay = Math.floor(Math.random() * (maxDelay - 1000)) + 1000; // At least 1 second
+            // const maxDelay = (TIME_PER_ARTICLE - TIME_TO_ENABLE_BUTTONS) * 500;
+            const delay = Math.floor(Math.random() * 2000); // At least 1 second
 
             const timeout = setTimeout(() => {
                 if (voteCompleted) return; // If already proceeding, do nothing
@@ -266,7 +269,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Check if it's time to proceed to the next article
     function checkAndProceed() {
-        if (voteCompleted || timerCompleted) {
+        if ((p1HasVoted && p2HasVoted) || timerCompleted) {
             proceedToNextArticle();
         }
     }
@@ -301,36 +304,30 @@ document.addEventListener('DOMContentLoaded', () => {
         flaggedArticles.push({ article: dummyArticles[currentArticleIndex], flag: flagType });
 
         // Update the user vote display
-        if (flagType === 'fake') {
-            if(currentPlayer == 1) {
-                p1VoteElement.style.display = 'block';
-                p1VoteElement.textContent = `${p1Nickname} voted: Fake`;
-                p1VoteElement.classList.add('fake');
+        if(currentPlayer == 1) {
+            p1VoteElement.style.display = 'block';
+            p1VoteElement.textContent = `${p1Nickname} has voted`;
+
+            if (flagType === 'fake') { 
                 if(!dummyArticles[currentArticleIndex].real) {
                     p1Score++;
                 }
-                alert(`Time for ${p2Nickname} to vote!`)
-            } else {
-                p2VoteElement.style.display = 'block';
-                p2VoteElement.textContent = `${p2Nickname} voted: Fake`;
-                p2VoteElement.classList.add('fake');
-                if(!dummyArticles[currentArticleIndex].real) {
-                    p2Score++;
-                }
-            }
-        } else if (flagType === 'real') {
-            if(currentPlayer == 1) {
-                p1VoteElement.style.display = 'block';
-                p1VoteElement.textContent = `${p1Nickname} voted: Real`;
-                p1VoteElement.classList.add('real');
-                alert(`Time for ${p2Nickname} to vote!`);
+            } else if (flagType === 'real') {
                 if(dummyArticles[currentArticleIndex].real) {
                     p1Score++;
                 }
-            } else {
-                p2VoteElement.style.display = 'block';
-                p2VoteElement.textContent = `${p2Nickname} voted: Real`;
-                p2VoteElement.classList.add('real');
+            }
+            alert(`Time for ${p2Nickname} to vote! Hide your screen!`);
+
+        } else if(currentPlayer == 2) {
+            p2VoteElement.style.display = 'block';
+            p2VoteElement.textContent = `${p2Nickname} has voted`;
+
+            if (flagType === 'fake') {
+                if(!dummyArticles[currentArticleIndex].real) {
+                    p2Score++;
+                }
+            } else if (flagType === 'real') {
                 if(dummyArticles[currentArticleIndex].real) {
                     p2Score++;
                 }
@@ -344,6 +341,43 @@ document.addEventListener('DOMContentLoaded', () => {
             p2HasVoted = true;
             disableFlagButtons();
         }
+
+
+        // if (flagType === 'fake') {
+        //     if(currentPlayer == 1) {
+        //         p1VoteElement.style.display = 'block';
+        //         p1VoteElement.textContent = `${p1Nickname} has voted`;
+        //         // p1VoteElement.classList.add('fake');
+        //         if(!dummyArticles[currentArticleIndex].real) {
+        //             p1Score++;
+        //         }
+        //         alert(`Time for ${p2Nickname} to vote!`)
+        //     } else {
+        //         p2VoteElement.style.display = 'block';
+        //         p2VoteElement.textContent = `${p2Nickname} has voted`;
+        //         // p2VoteElement.classList.add('fake');
+        //         if(!dummyArticles[currentArticleIndex].real) {
+        //             p2Score++;
+        //         }
+        //     }
+        // } else if (flagType === 'real') {
+        //     if(currentPlayer == 1) {
+        //         p1VoteElement.style.display = 'block';
+        //         p1VoteElement.textContent = `${p1Nickname} has voted`;
+        //         // p1VoteElement.classList.add('real');
+        //         alert(`Time for ${p2Nickname} to vote!`);
+        //         if(dummyArticles[currentArticleIndex].real) {
+        //             p1Score++;
+        //         }
+        //     } else {
+        //         p2VoteElement.style.display = 'block';
+        //         p2VoteElement.textContent = `${p2Nickname} has voted`;
+        //         // p2VoteElement.classList.add('real');
+        //         if(dummyArticles[currentArticleIndex].real) {
+        //             p2Score++;
+        //         }
+        //     }
+        // }
     }
 
     // Event listeners for flagging articles
@@ -372,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem("nextPage", "results");
         localStorage.setItem("p1Score", p1Score);
         localStorage.setItem("p2Score", p2Score);
-        window.location.href = 'waiting.html';
+        window.location.href = 'results.html';
     }
 
     // Load the first article on page load

@@ -62,6 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Start the timer
     currentPlayerElement.textContent = p1Nickname;
     currentPlayerElement.style.color = p1Color;
+    document.body.style.filter = 'blur(8px)';
+    setTimeout(function() {
+        alert(`Time for ${p1Nickname} to edit their article! Hide your screen!`);
+    },10)
+    setTimeout(function() {
+        document.body.style.filter = '';
+    },10)
     startTimer();
 });
 
@@ -237,7 +244,7 @@ editArticleForm.addEventListener('submit', function(event) {
 function changePlayers() {
     document.body.style.filter = 'blur(8px)';
     setTimeout(function() {
-        alert(`Time for ${p2Nickname} to edit their article!`);
+        alert(`Time for ${p2Nickname} to edit their article! Hide your screen!`);
     },10)
     setTimeout(function() {
         document.body.style.filter = '';
