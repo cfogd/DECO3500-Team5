@@ -23,21 +23,26 @@ Increase your fake news literacy by decieving your friends! Our design concept i
 
 [Ethical Considerations](https://github.com/cfogd/DECO3500-Team5/wiki/Ethical-Considerations)
 
+[Design Framework](https://github.com/cfogd/DECO3500-Team5/wiki/Design-Framework)
+
 ### Stand-up One (Week 8)
-[Summary](https://github.com/cfogd/DECO3500-Team5/wiki/Stand%E2%80%90up-One-%E2%80%90-Summary)
+[Summary](https://github.com/cfogd/DECO3500-Team5/wiki/Stand-Up-One-Summary)
 
-[User Testing](https://github.com/cfogd/DECO3500-Team5/wiki/Stand%E2%80%90up-One-%E2%80%90--User-Testing)
-
-[Prototypes](https://github.com/cfogd/DECO3500-Team5/wiki/Stand%E2%80%90up-One-%E2%80%90-Prototypes)
+[User Testing](https://github.com/cfogd/DECO3500-Team5/wiki/Stand-Up-User-Testing)
 
 ### Stand-up Two (Week 10)
-[Summary](https://github.com/cfogd/DECO3500-Team5/wiki/Stand%E2%80%90up-Two-%E2%80%90-Summary)
 
-[User Testing](https://github.com/cfogd/DECO3500-Team5/wiki/Stand%E2%80%90up-Two-%E2%80%90--User-Testing)
+[Summary](https://github.com/cfogd/DECO3500-Team5/wiki/Stand-Up-Two-Summary)
 
-[Prototypes](https://github.com/cfogd/DECO3500-Team5/wiki/Stand%E2%80%90up-Two-%E2%80%90-Prototypes)
+[User Testing](https://github.com/cfogd/DECO3500-Team5/wiki/Stand-Up-Two-User-Testing)
 
-Prototypes
-### Exhibit (Week 13)
+[Prototypes](https://github.com/cfogd/DECO3500-Team5/wiki/Stand-Up-Two-Prototypes)
+
+### Tradeshow (Week 12)
+[Summary](https://github.com/cfogd/DECO3500-Team5/wiki/Tradeshow-Summary)
+
+[User Testing](https://github.com/cfogd/DECO3500-Team5/wiki/Tradeshow-User-Testing)
+
+[Prototype](https://github.com/cfogd/DECO3500-Team5/wiki/Tradeshow-Prototype)
 
 
