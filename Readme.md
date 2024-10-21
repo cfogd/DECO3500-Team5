@@ -28,6 +28,8 @@ Increase your fake news literacy by decieving your friends! Our design concept i
 ### Stand-up One (Week 8)
 [Summary](https://github.com/cfogd/DECO3500-Team5/wiki/Stand-Up-One-Summary)
 
+[Academic Research](https://github.com/cfogd/DECO3500-Team5/wiki/Academic-Research)
+
 [User Testing](https://github.com/cfogd/DECO3500-Team5/wiki/Stand-Up-User-Testing)
 
 ### Stand-up Two (Week 10)
