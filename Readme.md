@@ -19,7 +19,7 @@ Increase your fake news literacy by decieving your friends! Our design concept i
 4. Have fun with a friend! (The prototype is 2 player)
 
 # Wiki
-[Design Overview](https://github.com/cfogd/DECO3500-Team5/wiki/Design-Overview)
+[Design Process Overview](https://github.com/cfogd/DECO3500-Team5/wiki/Design-Process-Overview)
 
 [Ethical Considerations](https://github.com/cfogd/DECO3500-Team5/wiki/Ethical-Considerations)
 
